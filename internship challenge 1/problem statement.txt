@@ -1,0 +1,24 @@
+#  Given a large set of key-value pairs of string. Load it into such a data structure (or create your own) which will  
+   support fast lookup of a keys and also consume less memory. 
+
+
+#  Write a program, preferably in C++ which will take the following 2 files:	
+   input.csv, test.txt
+
+#  Input_CSV file containing a key value pair of 1L words.
+   Test_TEXT file containing a set of keys
+
+
+#  Measure lookup time
+	Read the Input_CSV file and load it into your data structure. 
+
+	Read from Test_TEXT file into an Array. Lookup all the keys from test set and measure the time taken to do so. Display the time to lookup as output in nanoseconds. 
+
+
+#  Expected Program Output’s Format
+
+>> executable input.csv test.txt 
+567780000
+
+-----------------------------------------------------------------------------------------------------------------------
+

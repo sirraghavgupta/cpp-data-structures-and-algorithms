@@ -3,7 +3,7 @@ AUTHOR : RAGHAV GUPTA
 DATE   : 27 april 2019
 AIM    : to search a value in a 2d array which is sorted along the rows as
          well as sorted along the columns.
-STATUS : !!! my idea yet to be implemented !!!
+STATUS : !!! success !!!
 ##############################################################################*/
 #include <iostream>
 using namespace std;

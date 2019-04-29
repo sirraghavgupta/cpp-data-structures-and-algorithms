@@ -50,18 +50,22 @@ void spiralPrint(int matrix[][10], int r, int c){
     endCol--;
 
     // print the bottom wall of the spiral
-    if(endRow>=startRow){
+    if(endRow>startRow){      /* if i use <= here then exclude the endRow--
+                                  statement from the if block. thats anotehr way
+                                  doing */
       for(int j=endCol; j>=startCol; j--)
         cout<<matrix[endRow][j]<<" ";
-      }
       endRow--;
+    }
 
     // print the left wall of the spiral
-    if(endCol>=startCol){
+    if(endCol>startCol){      /* if i use <= here then exclude the startCol++
+                                 statement from the if block. thats another way
+                                  doing */
       for(int i=endRow; i>=startRow; i--)
         cout<<matrix[i][startCol]<<" ";
-      }
       startCol++;
+    }
 
   }
 }

@@ -22,7 +22,6 @@ bool comparator(string a, string b){
 }
 
 int main(){
-
   string fruits[20];
   int n;      // number of strings
   cin>>n;

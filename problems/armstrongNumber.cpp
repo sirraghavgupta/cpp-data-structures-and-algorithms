@@ -11,22 +11,42 @@ NOTE   : armstrong number is the number which is equal to the sum of all
 #include <cmath>
 using namespace std;
 
+/*
+  in case the pow function of the cmath header is not working fine, then  u can
+  use the custum power function written here
+
+  
+ ---------------- custum power function -------------
+int pow(int a, int b) {
+    if(b == 0) {
+        return 1;
+    }
+    int result = pow(a, b/2);
+    result *= result;
+    if(b&1) {
+        result *= a;
+    }
+    return result;
+}*/
+
+
 bool isArmstrong(int number){
-    int length=0, result=0, numcopy=number;
+    int length=0, numcopy=number;
+    int result = 0;
     int digit[10]={0};      // holds the digits of the number
+
     while(number>0){
         digit[length]=number%10;     // adding digits to the digits array
         length++;
         number/=10;
     }
 
-    for(int i=0; i<length; i++){
+    for(int i=0; i<length; i++){     // check for armstrong number
         cout<<"digit = "<<digit[i]<<endl;
-        cout<<"power evaluated = "<<pow(digit[i], length)<<endl;
+        cout<<"power evaluated = "<<(long)pow(digit[i], length)<<endl;
         result+=pow(digit[i], length);
         cout<<"result = "<<result<<endl;
     }
-    cout<<"the result is: "<<result<<endl;
     if(numcopy==result)     return true;
     else    return false;
 }

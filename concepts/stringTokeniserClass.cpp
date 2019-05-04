@@ -10,7 +10,8 @@ using namespace std;
 
 int main(){
 
-char str[100] = "hi!, i am raghav gupta. practicing and learning c++.";
+// char str[100] = "hi!, i am raghav gupta. practicing and learning c++.";
+char str[100] = "hello!, i am raghav gupta. i am learning data structres, algos.";
 char *ptr; // its mist to create a dangling pointer first.
 
 ptr=strtok(str, "!., ");

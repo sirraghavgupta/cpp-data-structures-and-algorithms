@@ -42,10 +42,10 @@ bool isArmstrong(int number){
     }
 
     for(int i=0; i<length; i++){     // check for armstrong number
-        cout<<"digit = "<<digit[i]<<endl;
-        cout<<"power evaluated = "<<(long)pow(digit[i], length)<<endl;
+        // cout<<"digit = "<<digit[i]<<endl;
+        // cout<<"power evaluated = "<<(long)pow(digit[i], length)<<endl;
         result+=pow(digit[i], length);
-        cout<<"result = "<<result<<endl;
+        // cout<<"result = "<<result<<endl;
     }
     if(numcopy==result)     return true;
     else    return false;

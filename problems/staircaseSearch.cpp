@@ -57,9 +57,7 @@ void staircaseSearch(int matrix[][10], int r, int c, int key){
   cout<<"value not found"<<endl;
 }
 
-void customsearch(int matrix[][10], int r, int c, int key){
 
-}
 
 int main(){
 
@@ -71,8 +69,7 @@ int main(){
   cin>>key;
 
   // bruteforceSearch(matrix, r, c, key;    // for bruteforce search
-  // staircaseSearch(matrix, r, c, key);    // for staircase search
-  customsearch(matrix, r, c, key);    // for raghav made search
+  staircaseSearch(matrix, r, c, key);    // for staircase search
 
 
 return 0;

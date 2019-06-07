@@ -4,7 +4,7 @@ DATE   : 5 june 2019
 AIM    : to print all the prime numbers between 2 numbers m and n
 		 where  [ 1<=m<=n<=1000000000, n-m<=100000 ]
 		 and test cases [ 1<=T<=10 ]
-STATUS : !!! needs to be optimised  !!!
+STATUS : !!! too high time complexity !!!
 ##############################################################################*/
 
 #include <iostream>

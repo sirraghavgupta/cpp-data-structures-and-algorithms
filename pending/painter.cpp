@@ -8,8 +8,8 @@ AIM    : to find out the minimum time required to paint n number of boards by
 		 different sizes.
 		 a board of size s will take s units of time.
 
-NOTE   : basically, any painter can pick any board and paint tht. moto is to finish 
-	 	 the worl as soon as possible
+NOTE   : basically, any painter can pick any board and paint that. moto is to finish 
+	 	 the work as soon as possible
 
 	====== MODIFCATION OF DAILY CODE BYTE OF 27 MAY 2019 =====
 

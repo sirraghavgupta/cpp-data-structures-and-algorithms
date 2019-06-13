@@ -12,6 +12,7 @@ STATUS : !!! needs to be optimised !!!
 ##############################################################################*/
 
 #include <iostream>
+#include "general.h"
 using namespace std;
 
 int main(){
@@ -20,10 +21,9 @@ int n;		// size of array
 cin>>n;
 
 int arr[n];		// read array
-for(int i=0; i<n; i++)
-	cin>>arr[i];
+readArray(arr, n);
 		
-int flag=0;			// dereasing sequence
+int flag=0;			// decreasing sequence
 for(int i=0; i<n; i++){
 	if(!flag){
 		if(arr[i]>arr[i+1])

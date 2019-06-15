@@ -24,21 +24,40 @@ bool checkPossibility(int p[], int n, ll target, int m){
 		if(curr_pages+p[i]>target){		// if i can't alot one more book to the student
 			curr_pages=0;				// reset the current pages
 			studCount++;				// take one more student
+			if(studCount>m)		return false; // if number of studs required are more than that 
+						// specified in the problem, then possibility fails
 		}	
 		else{			// one more book can be alloted to the student
 			curr_pages+=p[i];		// alot 	the book
 			i++;					// move to the next book now
 		}
 	}
-	if(studCount<=m)	return true;	// if number of studs required are more than that 
-						// specified in the problem, then possibility fails
-	else return false;
+	return true;
 }
 
 // -------------------------------------------------------------------------
 
-ll binSearchBooks(int p[], int n, int m){
+ll binSearchBooks(int p[], int n, int m,int totalPages){
+	ll mid;		
+	int start=p[0];
+	ll end=totalPages;
+	ll ans=-1;
+	while(start<=end){
 
+		mid = (start+end)/2;
+ 
+		if(checkPossibility(p,n,mid,m)){
+			/* if there is a possibility that m students can read these books with 
+			   no student reading more than 'mid' pages, then check for optimal
+			   solution by going towards the left of mid. */
+			end=mid-1;
+			ans=mid;		// keep this as the current answer
+		}
+		else{
+			start=mid+1;    // if possiblity fails, then try to take a bigger limit of pages
+		}
+	}
+	return ans;
 }
 
 int main(){
@@ -55,28 +74,7 @@ for(int i=0; i<n;i++){		// read the pages values
 	totalPages+=p[i];
 }
 
-cout<<binSearchBooks(p, n, m)<<endl;
-
-ll mid;		
-int start=p[0];
-ll end=totalPages;
-ll ans=-1;
-while(start<=end){
-
-	mid = (start+end)/2;
- 
-	if(checkPossibility(p,n,mid,m)){
-		/* if there is a possibility that m students can read these books with 
-		   no student reading more than 'mid' pages, then check for optimal
-		   solution by going towards the left of mid. */
-		end=mid-1;
-		ans=mid;		// keep this as the current answer
-	}
-	else{
-		start=mid+1;    // if possiblity fails, then try to take a bigger limit of pages
-	}
-}
-cout<<ans<<endl;
+cout<<binSearchBooks(p, n, m, totalPages)<<endl;
 
 return 0;
 }

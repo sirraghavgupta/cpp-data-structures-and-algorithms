@@ -44,9 +44,9 @@ bool checkPossibility(int size[], int n, ll target, int m){
 
 ll binSearchboards(int size[], int n, int m, int totalArea){
 	ll mid;		
-	int start=size[0];
+	int start=0;
 	ll end=totalArea;
-	ll ans=-1;
+	ll ans=totalArea;
 	while(start<=end){
 
 		mid = (start+end)/2;
@@ -71,7 +71,7 @@ int n,m,time;		// n - number of boards, m - number of painters
 cin>>n>>m>>time;	// time - time taken to paint one unit of area of board
 	
 int size[n];		// stores the area in units of a board
-int totalArea=0;		// total area of all the boards- denote the max area for a painter 
+ll totalArea=0;		// total area of all the boards- denote the max area for a painter 
 					// in worst case - if there is single painter - refers to max time
 
 for(int i=0; i<n;i++){		// read the size values 
@@ -79,8 +79,8 @@ for(int i=0; i<n;i++){		// read the size values
 	totalArea+=size[i];
 }
 
-int answer = time*binSearchboards(size, n, m, totalArea); 
-cout<<answer<<endl;
+ll answer = time*binSearchboards(size, n, m, totalArea); 
+cout<<answer%10000003<<endl;
 
 return 0;
 }

@@ -2,8 +2,7 @@
 AUTHOR : RAGHAV GUPTA
 DATE   : 14 june 2019
 AIM    : see in the image
-STATUS : !!! failing test cases !!!
-NOTE   : not running on THIS compiler due to stoi. run on ide..
+STATUS : -- logic is fine... some modification is required
 ##############################################################################*/
 
 #include <iostream>
@@ -12,24 +11,25 @@ NOTE   : not running on THIS compiler due to stoi. run on ide..
 // #include <bits/stdc++.h>
 using namespace std;
 
-bool compare(string s1, string s2, bool pattern, bool rev){
+bool compare(int n1, int n2, bool pattern, bool rev){
 	if(pattern){		// lexicographic sort
 		if(rev)
-			return s1>s2; 
+			return to_string(n1)<to_string(n2); 
 		else
-			return s1<s2;		
+			return to_string(n1)>to_string(n2);		
 	}
 	else{				// numeric sort
 		if(rev)
-			return stoi(s1)<stoi(s2);
+			return n1<n2;
 		else
-			return stoi(s1)>stoi(s2);
+			return n1>n2;
 	}							
 }
 
-void Sort(vector<string> v[10], int n, int key, bool rev, bool pattern){
+void Sort(vector<int> v[10], int n, int key, bool rev, bool pattern){
   for(int i=0; i<n-1; i++){
     for(int j=0; j<n-i-1; j++){
+      int temp;
       if(compare(v[j][key-1], v[j+1][key-1], pattern, rev))
       	swap(v[j],v[j+1]);
   	}
@@ -42,20 +42,18 @@ int main(){
 int n;
 cin>>n;
 
-vector<string> v[n];
-string str;
+vector<int> v[n];
+int num;
 
 // read the data
 for(int i=0; i<n; i++){
 
 	char ch;
 	do{
-		cin>>str;
-		str.shrink_to_fit();
-		v[i].push_back(str);
+		cin>>num;
+		v[i].push_back(num);
 		cin.get(ch);
 	}while(ch!='\n');
-	v[i].shrink_to_fit();
 }
 
 int key;			// which column to sort on behalf of

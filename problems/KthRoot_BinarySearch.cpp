@@ -1,7 +1,7 @@
 /*##############################################################################
 AUTHOR : RAGHAV GUPTA
 DATE   : 13 june 2019
-AIM    : to find out the Kth root of a number by binary search 
+AIM    : to find out the integral Kth root of a number by binary search 
 
 	   : You are given two integers n and k. Find the greatest integer x, such 
 		 that, x^k <= n.
@@ -12,17 +12,20 @@ STATUS : !!!  !!!
 #define ll long long int
 using namespace std;
 
-ll power(ll a, int b, int n) {
+bool checkPower(ll a, ll b, ll n) {
    ll result=1;
-   for(int i=0; i<b; i++){
+   for(ll i=0; i<b; i++){
    	  result*=a;
-   	  if(result>n)	
-   	  	return -1;
+   	  if(result<0)
+   	  	return false;
+   	  else if(result>n)
+   	  	return false;
    }
-   return result;
+   cout<<"result = "<<result<<endl;
+   return true;
 }
 
-ll KthRoot(ll n, int k){	// similar to binary search
+ll KthRoot(ll n, ll k){	// similar to binary search
 
 	ll start=0, end=n;	
 	ll mid;
@@ -31,18 +34,13 @@ ll KthRoot(ll n, int k){	// similar to binary search
 	while(start<=end){
 
 		mid = (start+end)/2;
-		ll currVal = power(mid,k,n);
-		if(currVal==n){	 // perfect square root found, then return it
-			ans = mid;
-			break;
-		}
-
-		else if(currVal<n){	// look for a better integral part if exists
-			start = mid+1;
-			ans = mid;
+		cout<<"mid = "<<mid<<endl;
+		if(checkPower(mid,k,n)){
+			ans=mid;
+			start=mid+1;
 		}
 		else
-			end = mid-1;
+			end=mid-1;
 	}
 
 	return ans;
@@ -52,13 +50,19 @@ ll KthRoot(ll n, int k){	// similar to binary search
 
 int main(){
 
-ll n;		// number 
-cin>>n;
+int t;
+cin>>t;
 
-int k;		// value of k
-cin>>k;
+while(t>0){
+	ll n;		// number 
+	cin>>n;
 
-cout<<KthRoot(n, k)<<endl;
+	ll k;		// value of k
+	cin>>k;
+
+	cout<<KthRoot(n, k)<<endl;
+t--;
+}
 
 return 0;
 }

@@ -11,21 +11,21 @@ using namespace std;
 
 /* NOTE ABOUT STRCMP FUNCTION :-
    strcmp - returns 0 value if the two strings are perfectly same.
-          - returns positive value if the first string comes b4 the second in
+          - returns positive value if the first string comes after the second in
           lexicographic order
-          - returns negative value if the first string comes after the second in 
+          - returns negative value if the first string comes before the second in 
           lexicographic order*/
 
 void stringSort(char arr[][100], int n){
   // ----------- using bubble sort ---------
 cout<<"inside the function"<<endl;
   for(int i=0; i<n-1; i++){
-    for(int j=i+1; j<n; j++){
+    for(int j=0; j<n-i-1; j++){
       char temp[100];
-      if(strcmp(arr[i],arr[j])>0){
+      if(strcmp(arr[j],arr[j+1])>0){
         strcpy(temp,arr[j]);
-        strcpy(arr[j],arr[i]);
-        strcpy(arr[i],temp);
+        strcpy(arr[j],arr[j+1]);
+        strcpy(arr[j+1],temp);
       }
     }
   }

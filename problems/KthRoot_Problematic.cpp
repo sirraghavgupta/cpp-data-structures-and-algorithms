@@ -5,7 +5,7 @@ AIM    : to find out the integral Kth root of a number by binary search
 
 	   : You are given two integers n and k. Find the greatest integer x, such 
 		 that, x^k <= n.
-STATUS : !!!  !!!
+STATUS : !!! C O M P I L E R ----- P R O B L E M !!!
 ##############################################################################*/
 
 #include <iostream>
@@ -24,6 +24,7 @@ bool checkPower(ll a, ll b, ll n) {
    cout<<"result = "<<result<<endl;
    return true;
 }
+
 
 ll KthRoot(ll n, ll k){	// similar to binary search
 

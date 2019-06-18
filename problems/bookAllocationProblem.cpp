@@ -37,9 +37,9 @@ bool checkPossibility(int p[], int n, ll target, int m){
 
 // -------------------------------------------------------------------------
 
-ll binSearchBooks(int p[], int n, int m,int totalPages){
+ll binSearchBooks(int p[], int n, int m,ll totalPages){
 	ll mid;		
-	int start=p[0];
+	ll start=p[0];
 	ll end=totalPages;
 	ll ans=-1;
 	while(start<=end){

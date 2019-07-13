@@ -1,7 +1,7 @@
 /*##############################################################################
 AUTHOR : RAGHAV GUPTA
 DATE   : 12 july 2019
-AIM    : reverse a linked list
+AIM    : reverse a linked list iteratively
 STATUS : !!! success !!!
 ##############################################################################*/
 

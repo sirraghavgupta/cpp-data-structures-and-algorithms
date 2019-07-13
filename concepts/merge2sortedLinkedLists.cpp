@@ -1,8 +1,8 @@
 /*##############################################################################
 AUTHOR : RAGHAV GUPTA
 DATE   : 13 july 2019
-AIM    : find he Kth node of the link list from the end
-STATUS : !!! success !!!
+AIM    : to merge 2 sorted linked lists 
+STATUS : !!!  !!!
 ##############################################################################*/
 
 #include <iostream>
@@ -59,41 +59,60 @@ ostream& operator<<(ostream &os, node *&head){
 	return os;
 }
 
-node* getKthNode(node* head, int k){
-	if(head==NULL){
-		cout<<"empty list"<<endl;
-		return head;
-	}
+node* mergeSortedLists(node *head1, node* head2){
 
-	node* slow = head;
-	node* fast = head;
-	// take k steps for fast first - create a gap of k between them
-	while(k--){
-		fast = fast->next;
-		if(fast==NULL){	// if k>number of elements in list
-			cout<<"invalid index"<<endl;
-			return NULL;
+	if(head1==NULL)
+		return head2;
+	if(head2==NULL)
+		return head1;
+
+	node *head = NULL;
+	node *tail = NULL;
+
+	if(head1->data <= head2->data){
+		head = head1;
+		head1 = head1->next;
+	}
+	else{
+		head = head2;
+		head2 = head2->next;
+	}
+	tail = head;
+
+	while(head1!=NULL && head2!=NULL){
+		if(head1->data <= head2->data){
+			tail->next = head1;
+			head1 = head1->next;
 		}
+		else{
+			tail->next = head2;
+			head2 = head2->next;	
+		}
+		tail = tail->next;
 	}
 
-	while(fast!=NULL){
-		fast = fast->next;
-		slow = slow->next;
+	if(head1==NULL){
+		tail->next = head2;
 	}
-	return slow;
+	else{
+		tail->next = head1;
+	}
+	return head;
 }
 
 int main(){
 
-node *head = NULL;
-cin>>head;
-cout<<head<<endl;
+node *head1 = NULL;
+node *head2 = NULL;
 
-int k;
-cin>>k;
-node* target = getKthNode(head, k);
-if(target != NULL)
-	cout<<target->data<<endl;
+cin>>head1;
+cout<<head1;
+
+cin>>head2;
+cout<<head2;
+
+node *head = mergeSortedLists(head1, head2);
+cout<<head;
 
 return 0;
 }

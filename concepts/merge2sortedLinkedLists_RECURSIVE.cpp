@@ -1,7 +1,7 @@
 /*##############################################################################
 AUTHOR : RAGHAV GUPTA
-DATE   : 13 july 2019
-AIM    : to merge 2 sorted linked lists 
+DATE   : 14 july 2019
+AIM    : to merge 2 sorted linked lists rcursively
 STATUS : !!! success !!!
 ##############################################################################*/
 
@@ -59,49 +59,34 @@ ostream& operator<<(ostream &os, node *&head){
 	return os;
 }
 
-node* mergeSortedLists(node *head1, node* head2){
+node* mergeSortedListsREC(node *head1, node* head2){
 
+	// base case
+		// -- if any one of the lists become null, then the other list is the answer
+		// -- both lists can never be null, else the user is crazy
 	if(head1==NULL)
 		return head2;
 	if(head2==NULL)
 		return head1;
 
-	node *head = NULL;
-	node *tail = NULL;
-
+	// rec case
+	node *head = NULL;	// points to the smaller element of the 2 lists
 	if(head1->data <= head2->data){
+		// save the address of the smaller element
 		head = head1;
-		head1 = head1->next;
+		// merge the remaining list and then finally add the smaller element to its head
+		head->next = mergeSortedListsREC(head1->next, head2);
 	}
 	else{
 		head = head2;
-		head2 = head2->next;
+		head->next = mergeSortedListsREC(head1, head2->next);
 	}
-	tail = head;
-
-	while(head1!=NULL && head2!=NULL){
-		if(head1->data <= head2->data){
-			tail->next = head1;
-			head1 = head1->next;
-		}
-		else{
-			tail->next = head2;
-			head2 = head2->next;	
-		}
-		tail = tail->next;
-	}
-
-	if(head1==NULL){
-		tail->next = head2;
-	}
-	else{
-		tail->next = head1;
-	} 
 	return head;
 }
 
 int main(){
 
+// input and print the lists
 node *head1 = NULL;
 node *head2 = NULL;
 
@@ -111,7 +96,8 @@ cout<<head1;
 cin>>head2;
 cout<<head2;
 
-node *head = mergeSortedLists(head1, head2);
+// merging
+node *head = mergeSortedListsREC(head1, head2);
 cout<<head;
 
 return 0;

@@ -26,7 +26,8 @@ deque<int> Q(k);
 
 
 // we have to process first k elements separately
-for(int i=0; i<k; i++){
+int i;
+for(i=0; i<k; i++){
 	while(!Q.empty() && a[i]>a[Q.back()]){
 		Q.pop_back();
 	}

@@ -60,23 +60,37 @@ void printPostOrder(node *root){
 	cout<<root->data<<" ";
 }
 
-/*void printLevelOrder(node *root){
-	if(root==NULL)
-		return;
-	cout<<root->data<<" ";
-	printLevelOrder(root->left);
-	printLevelOrder(root->right);
-	node *left = root->left;
-	node *right = root->right;
-}*/
 
-int computeHeight(node *root){
+int getHeight(node *root){
 	// get the number of levels = get height
 	if(root==NULL)
 		return 0;
-	int leftH = 1 + computeHeight(root->left);
-	int rightH = 1+ computeHeight(root->right);
+	int leftH = 1 + getHeight(root->left);
+	int rightH = 1+ getHeight(root->right);
 	return (leftH>rightH)?leftH:rightH;
+}
+
+void printKlevel(node *root, int k){
+	if(root == NULL)
+		return;
+	if(k==1){
+		cout<<root->data<<" ";
+		return;
+	}
+	
+	printKlevel(root->left, k-1);
+	printKlevel(root->right, k-1);
+		
+	return;
+}
+
+void printLevelOrder(node *root){
+	// time complexity = O(n^2)
+	int h = getHeight(root);
+	for(int i=1; i<=h; i++){
+		printKlevel(root, i);
+		cout<<endl;
+	}
 }
 
 int main(){
@@ -88,7 +102,8 @@ printInOrder(root);
 cout<<endl;
 printPostOrder(root);
 cout<<endl;
-cout<<computeHeight(root)<<endl;
+cout<<getHeight(root)<<endl;
+printLevelOrder(root);
 
 return 0;
 }

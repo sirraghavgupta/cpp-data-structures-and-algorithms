@@ -1,7 +1,8 @@
 /*##############################################################################
 AUTHOR : RAGHAV GUPTA
-DATE   : 9 august 2019
-AIM    : build tree from preorder and inorder given
+DATE   : 31 august 2019
+AIM    : replace all the elements in a BST with the sum of all elements greater
+		 than or equal to it.
 STATUS : !!! success !!!
 ##############################################################################*/
 
@@ -23,6 +24,7 @@ public:
 };
 
 node* buildTree(){
+	// build a binary tree in preorder format and return the root node.
 	 int d;
 	 cin>>d;
 
@@ -43,24 +45,6 @@ int linearSearch(int arr[], int s, int e, int key){
 			return i;
 	}
 	return -1;
-}
-
-node* buildTreeFromPreorderAndInorder(int *pre, int *in, int s, int e){
-	static int i = 0;
-	// base case
-	if(s>e)
-		return NULL;
-
-	// Rec case
-	node *root = new node(pre[i]);		// place the root
-
-	int index = linearSearch(in, s, e, pre[i]);		// search the root in inorder
-	i++;
-	// recursive for left tree and right tree
-	root->left  = buildTreeFromPreorderAndInorder(pre, in, s, index-1);
-	root->right = buildTreeFromPreorderAndInorder(pre, in, index+1, e); 
-
-	return root;
 }
 
 void bfs(node *root){
@@ -93,49 +77,58 @@ void bfs(node *root){
 	}
 }
 
-void printDifferent(node *root){
-// task on course tree challenges. 
-	// base case
+node* buildBalancedTree(int arr[], int s, int e){
+	// to build a BST from its inorder traversal array
+	if(s>e)
+		return NULL;
+	
+	int mid = (s+e)/2;
+	node *root = new node(arr[mid]);
+	root->left = buildBalancedTree(arr, s, mid-1);
+	root->right = buildBalancedTree(arr, mid+1, e);
+
+	return root;
+}
+
+
+void printPreOrder(node *root){
 	if(root==NULL)
 		return;
+	cout<<root->data<<" ";
+	printPreOrder(root->left);
+	printPreOrder(root->right);
+}
 
-	if(root->left)
-		cout<<root->left->data;
-	else
-		cout<<"END";
+int replaceWithGreaterSum(node *&root, int sum){
+	if(root==NULL)
+		return sum;
 
-	cout<<" => ";
-	cout<<root->data;
-	cout<<" <= ";
+	if(root->left == NULL && root->right == NULL){
+		root->data = root->data + sum;
+		return root->data;
+	}
+	
+	int rightsum = replaceWithGreaterSum(root->right, sum);
+	sum = root->data = root->data + rightsum;
+	int leftSum = replaceWithGreaterSum(root->left, sum);
 
-	if(root->right)
-		cout<<root->right->data;
-	else
-		cout<<"END";
-	cout<<endl;
-	// rec case
-	printDifferent(root->left);
-	printDifferent(root->right);
-	return;
+	return leftSum;
 }
 
 int main(){
 
+// get the array
 int n;
-
 cin>>n;
-int pre[n];				// preorder traversal
+int arr[n];
 for(int i=0; i<n; i++)
-	cin>>pre[i];
+	cin>>arr[i];
 
-cin>>n;
-int in[n];				// inorder traversal
-for(int i=0; i<n; i++)
-	cin>>in[i];
-
-node *root = buildTreeFromPreorderAndInorder(pre, in, 0, n-1);
-bfs(root);
-printDifferent(root);
+node *root =  buildBalancedTree(arr, 0, n-1);
+// bfs(root);
+replaceWithGreaterSum(root, 0);
+printPreOrder(root);
+cout<<endl;
 
 return 0;
 }

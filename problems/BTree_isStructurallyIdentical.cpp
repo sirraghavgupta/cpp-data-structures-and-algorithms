@@ -65,6 +65,7 @@ void printInOrder(node *root){
 
 
 node* buildTree(){
+	// build the binary tree in preorder formal using TRUE FALSE method
 	string s;
 	cin>>s;
 	int data;

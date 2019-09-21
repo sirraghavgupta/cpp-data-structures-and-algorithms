@@ -11,27 +11,17 @@ using namespace std;
 
 int main(){
 
-// read array 1
-int n;
-cin>>n;
-int arr[n];
-for(int i=0; i<n; i++)
-	cin>>arr[i];
+    int n;
+    cin>>n;
+    int arr[n];
+    unordered_map<int, bool> unique;
+    for(int i=0; i<n; i++){
+        cin>>arr[i];
+        unique[arr[i]] = 1;
+    }
 
-
-// processing logic 
-unordered_map<int, bool> m;
-
-// push first array into the map
-for(int i=0; i<n; i++){
-	if(m[arr[i]]==false)
-		m[arr[i]] = true;
-}
-
-// print the map now
-for(auto it:m)
-	cout<<it.first<<" ";
-cout<<endl;
+    for (auto x : unique) 
+      cout << x.first << endl; 
 
 return 0;
 }

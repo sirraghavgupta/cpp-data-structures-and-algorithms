@@ -2,7 +2,7 @@
 AUTHOR : RAGHAV GUPTA
 DATE   : 21 september 2019
 AIM    : Given an array arr of n length. You will be given Q queries for the array. 
-		 Each query contains a number N.You have to determine whether a number 
+		 Each query contains a number N. You have to determine whether a number 
 		 exist in the array or not.
 STATUS : !!! success !!!
 ##############################################################################*/

@@ -1,11 +1,11 @@
 /*##############################################################################
 AUTHOR : RAGHAV GUPTA
-DATE   : 21 september 2019
+DATE   : 10 october 2019
 AIM    : 
 STATUS : !!!  !!!
 ##############################################################################*/
 
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main(){

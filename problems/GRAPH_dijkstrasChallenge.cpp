@@ -1,12 +1,7 @@
 /*##############################################################################
 AUTHOR : RAGHAV GUPTA
-DATE   : 24 october 2019
-AIM    : to implement dijkstra's algorithm
-		 BFS algo doesnt work of graph having weights, so we have this
-
-		 Dij.. works only if the graph doesnt have a negativwe weight cycle
-
-TIME   : O(ElogV) time 
+DATE   : 18 november 2019
+AIM    : dijkstra- only diff is that print -1 for unreachhable nodes.
 STATUS : !!! success !!!
 ##############################################################################*/
 
@@ -16,9 +11,14 @@ using namespace std;
 template<typename T>
 class Graph{
 private:
+	int n;
 	unordered_map<T, list<pair<T, int>>> m;		// adjacency list basically 
 
 public:
+	Graph(int N){
+		n = N;
+	}
+
 	void addEdge(T u, T v, int dist, bool bidirectional=true){
 		m[u].push_back(make_pair(v, dist));
 
@@ -41,8 +41,12 @@ public:
 	void dijkstraSSSP(T src){
 		// set up the initial dist array 
 		map<T, int> dist;	// stores the shortest distance 
-		for(auto i:m){
-			dist[i.first] = INT_MAX;
+		// for(auto i:m){
+		// 	dist[i.first] = INT_MAX;
+		// }
+
+		for(int i=1; i<=n; i++){
+			dist[i] = INT_MAX;
 		}
 		dist[src] = 0;
 
@@ -80,42 +84,41 @@ public:
 			}
 		}
 		// print the shortest distances
-		for(auto d : dist){
-			cout<<d.first<<" -> "<<d.second<<endl;
+		for(int i=1; i<=n; i++){
+			if(i != src){
+				// cout<<i<<" -> ";
+				if(dist[i]==INT_MAX)
+					cout<<"-1"<<" ";
+				else
+					cout<<dist[i]<<" ";
+			}
 		}
+		cout<<endl;
 	}
 };
 
 int main(){
 
-/*Graph<int> g;
+int t;
+cin>>t;
 
-g.addEdge(1, 2, 1);
-g.addEdge(1, 3, 4);
-g.addEdge(1, 4, 7);
-g.addEdge(3, 4, 2);
-g.addEdge(2, 3, 1);
-g.dijkstraSSSP(1);
-*/
+while(t--){
 
-Graph<string> india;
-india.addEdge("Amritsar", "Delhi", 1);
-india.addEdge("Amritsar", "Jaipur", 4);
-india.addEdge("Jaipur", "Delhi", 2);
-india.addEdge("Jaipur", "Mumbai", 8);
-india.addEdge("Bhopal", "Agra", 2);
-india.addEdge("Mumbai", "Bhopal", 3);
-india.addEdge("Agra", "Delhi", 1);
+	int n, e;
+	cin>>n>>e;
 
-// india.printList();
-india.dijkstraSSSP("Amritsar");
+	Graph<int> g(n);
+	
+	for(int i=0; i<e; i++){
+		int u, v, w;
+		cin>>u>>v>>w;
+		g.addEdge(u,v,w);
+	}
+	int src;
+	cin>>src;
 
-/*Graph<int> g;
-g.addEdge(1, 2, 24);
-g.addEdge(1, 4, 20);
-g.addEdge(3, 1, 3);
-g.addEdge(4, 3, 12);
-g.dijkstraSSSP(1);*/
+	g.dijkstraSSSP(src);
+}
 
 
 return 0;

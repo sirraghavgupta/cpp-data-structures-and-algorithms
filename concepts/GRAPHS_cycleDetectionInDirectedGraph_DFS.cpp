@@ -77,7 +77,7 @@ public:
 								// } 
 
 			// my version 
-			// if the node if unvisited and its dfs call returns returns true, then return true also
+			// if the node is unvisited and its dfs call returns returns true, then return true also
 			if(!visited[node] && DFScycleDetectionHelper(node, visited, inStack))
 				return true;
 		} 
